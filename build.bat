@@ -2,12 +2,12 @@
 
 @REM First, if Program.cs exists, copy it to a cache file, then remove it!
 echo Removing Program.cs...
-cp Program.cs Program.cache
-rm Program.cs
+copy Program.cs Program.cache
+del Program.cs
 
 @REM Remove the csharp project file (if that doesn't exist, it will just give an error and move on)
 echo Removing *.csproj...
-rm *.csproj
+del *.csproj
 
 @REM Remove the binary and object folders of the project (if these don't exist, it will just give an error and move on)
 echo Removing binary and object folders...
@@ -23,7 +23,7 @@ dotnet restore
 dotnet add package Raylib-CsLo --version 4.0.0-rc.4.2
 
 @REM If there's a cache file for Program.cs, copy the content to the Program.cs just created
-cp Program.cache Program.cs
+copy Program.cache Program.cs
 
 @REM Remove the cache file
 @REM rm Program.cache
