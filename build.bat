@@ -19,6 +19,9 @@ echo Old files cleaned! Creating new project...
 dotnet new console
 dotnet restore
 
+@REM Once the new project is created, add the Raylib_CsLo package
+dotnet add package Raylib-CsLo --version 4.0.0-rc.4.2
+
 @REM If there's a cache file for Program.cs, copy the content to the Program.cs just created
 cp Program.cache Program.cs
 
