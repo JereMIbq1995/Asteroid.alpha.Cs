@@ -31,7 +31,7 @@ namespace genie.services.raylib
             Attempt to return the raylib version of the mouse button,
             given the genie version
         */
-        public int getRaylibMouse(int genieMouseButton)
+        public int GetRaylibMouse(int genieMouseButton)
         {
             try
             {

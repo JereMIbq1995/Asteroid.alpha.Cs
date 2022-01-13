@@ -151,7 +151,7 @@ namespace genie.services.raylib {
             keysMap.Add(Keys.VOLUME_DOWN, (int) KeyboardKey.KEY_VOLUME_DOWN);
         }
 
-        public int getRaylibKey(int genieKey) {
+        public int GetRaylibKey(int genieKey) {
             try {
                 return this.keysMap[genieKey];
             }
