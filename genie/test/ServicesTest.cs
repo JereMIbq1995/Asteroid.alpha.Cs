@@ -113,7 +113,8 @@ namespace genie.services.raylib
         }
 
         /**********************************************************************
-        * This function test the detection of the 4 mouse button
+        * This function test the detection of the mouse buttons:
+        * LEFT, RIGHT and Scrolling
         ***********************************************************************/
         public void TestMouseService()
         {
