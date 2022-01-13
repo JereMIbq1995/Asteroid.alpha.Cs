@@ -13,14 +13,6 @@ namespace genie.services.raylib {
         public RaylibKeyboardService() {
             this.keysMap = new KeysMap();
         }
-        
-        /***************************************************************
-        * Check to see if the X mark on the top right of the game window
-        * is clicked
-        ****************************************************************/
-        public bool IsQuit() {
-            return Raylib.WindowShouldClose();
-        }
 
         /***************************************************************
         * Get a dictionary that map a set of keys to their states (Up or Down)
