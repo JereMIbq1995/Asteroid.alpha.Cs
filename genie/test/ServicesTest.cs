@@ -1,27 +1,38 @@
 using Raylib_CsLo;
+using System.Numerics;
 
 namespace genie.services.raylib
 {
     class ServicesTest {
         
+        RaylibKeyboardService keyboardService;
+        RaylibMouseService mouseService;
+        RaylibScreenService screenService;
+        // RaylibAudioService audioService;
+        // RaylibPhysicsService physicsService;
+
         public ServicesTest() {
             // Nothing for now
+            this.keyboardService = new RaylibKeyboardService();
+            this.mouseService = new RaylibMouseService();
+            this.screenService = new RaylibScreenService();
         }
 
         /**********************************************************************
-        * This function test the keyboard's detection of the 4 keys LEFT, RIGHT,
-        * UP, and DOWN.
-        * If none of the keys above are pressed, console will continually print
-        *    the text "No key pressed..."
-        * If any key is pressed, the console will print "<key> is pressed!"
+        * This function test the detection of keys 
+        *   - LEFT, RIGHT, UP, and DOWN.
+        *   - A, D, W, S
+        *   - and J, L, I, K
+        * The first keys group tests the function GetKeysStates()
+        * The second keys group tests the functions IsKeysPressed() and IsKeysReleased()
+        * The third keys group tests the functions IsKeysDown() and IsKeysUp()
         ***********************************************************************/
         public void TestKeyboardService() {
-            RaylibKeyboardService keyboardService = new RaylibKeyboardService();
 
             Raylib.InitWindow(1280, 720, "Hello, Raylib-CsLo");
             Raylib.SetTargetFPS(60);
 
-            while (!keyboardService.IsQuit()) {
+            while (!screenService.IsQuit()) {
                 
                 //Testing get keys states:
                 List<int> keys = new List<int>();
@@ -96,6 +107,85 @@ namespace genie.services.raylib
                 Raylib.DrawText("Press UP, DOWN, LEFT, or RIGHT and watch the console!", 100, 360, 30, Raylib.RED);
                 Raylib.DrawText("Press W, S, A, or D and watch the console!", 100, 400, 30, Raylib.RED);
                 Raylib.DrawText("Press I, K, J, or L and watch the console!", 100, 440, 30, Raylib.RED);
+                Raylib.EndDrawing();
+            }
+            Raylib.CloseWindow();
+        }
+
+        /**********************************************************************
+        * This function test the detection of the 4 mouse button
+        ***********************************************************************/
+        public void TestMouseService()
+        {
+            RaylibMouseService mouseService = new RaylibMouseService();
+
+            Raylib.InitWindow(1280, 720, "Hello, Raylib-CsLo");
+            Raylib.SetTargetFPS(60);
+
+            while (!screenService.IsQuit())
+            {
+
+                //Testing IsMousePressed(), IsMouseReleased():
+                if (mouseService.IsButtonPressed(Mouse.LEFT)) {
+                    Console.WriteLine("LEFT mouse pressed!");
+                }
+                if (mouseService.IsButtonPressed(Mouse.RIGHT)) {
+                    Console.WriteLine("RIGHT mouse pressed!");
+                }
+                if (mouseService.IsButtonReleased(Mouse.LEFT)) {
+                    Console.WriteLine("LEFT mouse released!");
+                }
+                if (mouseService.IsButtonReleased(Mouse.RIGHT)) {
+                    Console.WriteLine("RIGHT mouse released!");
+                }
+
+                // Test GetMouseWheelMove()
+                float mouseWheelMove = mouseService.GetMouseWheelMove();
+
+                //Test IsMouseDown(), IsMouseUp():
+                bool leftDown = mouseService.IsButtonDown(Mouse.LEFT);
+                bool rightDown = mouseService.IsButtonDown(Mouse.RIGHT);
+                bool leftUp = mouseService.IsButtonUp(Mouse.LEFT);
+                bool rightUp = mouseService.IsButtonUp(Mouse.RIGHT);
+
+                // Test HasMouseMoved() and GetCurrentCoordinates()
+                if (mouseService.HasMouseMoved()) {
+                    Console.WriteLine("Mouse is moving...");
+                    Vector2 mouseCoordinates = mouseService.GetCurrentCoordinates();
+                    Console.WriteLine($"Coordinates: ({mouseCoordinates.X}, {mouseCoordinates.Y})");
+                }
+
+                //All the drawing stuff...
+                Raylib.BeginDrawing();
+                Raylib.ClearBackground(Raylib.SKYBLUE);
+                Raylib.DrawFPS(10, 10);
+                if (leftDown) {
+                    Raylib.DrawCircle(100, 100, 80, Raylib.RED);
+                }
+                if (leftUp) {
+                    Raylib.DrawCircle(100, 100, 80, Raylib.GRAY);
+                }
+                if (rightDown) {
+                    Raylib.DrawCircle(200, 100, 80, Raylib.RED);
+                }
+                if (rightUp) {
+                    Raylib.DrawCircle(200, 100, 80, Raylib.GRAY);
+                }
+                
+                if (mouseWheelMove > 0) {
+                    Raylib.DrawCircle(400, 100, 20, Raylib.RED);
+                }
+                else if (mouseWheelMove < 0) {
+                    Raylib.DrawCircle(400, 200, 20, Raylib.RED);
+                }
+                else {
+                    Raylib.DrawCircle(400, 150, 20, Raylib.RED);
+                }
+                Raylib.DrawText("CLICK anywhere on the screen with LEFT and RIGHT mouse", 100, 360, 30, Raylib.RED);
+                Raylib.DrawText("The gray dots above will change color when the respective mouse is HELD.", 100, 400, 30, Raylib.RED);
+                Raylib.DrawText("Scroll to pull the small RED dot UP or DOWN", 100, 440, 30, Raylib.RED);
+                Raylib.DrawText("Watch the console for Pressed and Released detection", 100, 480, 30, Raylib.RED);
+                Raylib.DrawText("Watch the console for mouse Movement detection", 100, 520, 30, Raylib.RED);
                 Raylib.EndDrawing();
             }
             Raylib.CloseWindow();
