@@ -14,9 +14,13 @@ namespace asteroid
         {
             // MouseMap mouseMap = new MouseMap();
             // mouseMap.getRaylibMouse(-1);
-            CastScriptTest castScriptTest = new CastScriptTest();
-            castScriptTest.testCast();
+            
+            // CastScriptTest castScriptTest = new CastScriptTest();
+            // castScriptTest.testCast();
             // castScriptTest.testScript();
+            
+            ServicesTest servicesTest = new ServicesTest();
+            servicesTest.TestKeyboardService();
 
             // Director director = new Director();
             // director.DirectScene();
