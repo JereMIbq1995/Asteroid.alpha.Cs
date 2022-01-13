@@ -12,8 +12,8 @@ namespace asteroid
     {
         public static void Main(string[] args)
         {
-            MouseMap mouseMap = new MouseMap();
-            mouseMap.getRaylibMouse(-1);
+            // MouseMap mouseMap = new MouseMap();
+            // mouseMap.getRaylibMouse(-1);
             CastScriptTest castScriptTest = new CastScriptTest();
             castScriptTest.testCast();
             // castScriptTest.testScript();
