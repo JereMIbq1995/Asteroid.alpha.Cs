@@ -1,8 +1,8 @@
 using Raylib_CsLo;
 
 namespace genie.services.raylib {
+    
     class RaylibKeyboardService {
-
         //The keyboard service has a key map that maps
         // all genie key codes into Raylib key codes
         KeysMap keysMap;
