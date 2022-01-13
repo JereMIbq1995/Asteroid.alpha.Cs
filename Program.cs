@@ -20,7 +20,7 @@ namespace asteroid
             // castScriptTest.testScript();
             
             ServicesTest servicesTest = new ServicesTest();
-            servicesTest.TestKeyboardService();
+            servicesTest.TestMouseService();
 
             // Director director = new Director();
             // director.DirectScene();
