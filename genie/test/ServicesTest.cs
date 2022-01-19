@@ -122,6 +122,7 @@ namespace genie.services.raylib
 
             Raylib.InitWindow(1280, 720, "Hello, Raylib-CsLo");
             Raylib.SetTargetFPS(60);
+            int smallDotYCoor = 200;
 
             while (!screenService.IsQuit())
             {
@@ -133,21 +134,30 @@ namespace genie.services.raylib
                 if (mouseService.IsButtonPressed(Mouse.RIGHT)) {
                     Console.WriteLine("RIGHT mouse pressed!");
                 }
+                if (mouseService.IsButtonPressed(Mouse.MIDDLE)) {
+                    Console.WriteLine("MIDDLE mouse pressed!");
+                }
                 if (mouseService.IsButtonReleased(Mouse.LEFT)) {
                     Console.WriteLine("LEFT mouse released!");
                 }
                 if (mouseService.IsButtonReleased(Mouse.RIGHT)) {
                     Console.WriteLine("RIGHT mouse released!");
                 }
+                if (mouseService.IsButtonReleased(Mouse.MIDDLE)) {
+                    Console.WriteLine("MIDDLE mouse released!");
+                }
 
                 // Test GetMouseWheelMove()
                 float mouseWheelMove = mouseService.GetMouseWheelMove();
+                smallDotYCoor -= (int)mouseWheelMove*2;
 
                 //Test IsMouseDown(), IsMouseUp():
                 bool leftDown = mouseService.IsButtonDown(Mouse.LEFT);
                 bool rightDown = mouseService.IsButtonDown(Mouse.RIGHT);
+                bool middleDown = mouseService.IsButtonDown(Mouse.MIDDLE);
                 bool leftUp = mouseService.IsButtonUp(Mouse.LEFT);
                 bool rightUp = mouseService.IsButtonUp(Mouse.RIGHT);
+                bool middleUp = mouseService.IsButtonUp(Mouse.MIDDLE);
 
                 // Test HasMouseMoved() and GetCurrentCoordinates()
                 if (mouseService.HasMouseMoved()) {
@@ -166,23 +176,30 @@ namespace genie.services.raylib
                 if (leftUp) {
                     Raylib.DrawCircle(100, 100, 80, Raylib.GRAY);
                 }
-                if (rightDown) {
-                    Raylib.DrawCircle(200, 100, 80, Raylib.RED);
+                if (middleDown) {
+                    Raylib.DrawCircle(200, 100, 80, Raylib.BLUE);
                 }
-                if (rightUp) {
+                if (middleUp) {
                     Raylib.DrawCircle(200, 100, 80, Raylib.GRAY);
                 }
-                
-                if (mouseWheelMove > 0) {
-                    Raylib.DrawCircle(400, 100, 20, Raylib.RED);
+                if (rightDown) {
+                    Raylib.DrawCircle(300, 100, 80, Raylib.RED);
                 }
-                else if (mouseWheelMove < 0) {
-                    Raylib.DrawCircle(400, 200, 20, Raylib.RED);
+                if (rightUp) {
+                    Raylib.DrawCircle(300, 100, 80, Raylib.GRAY);
                 }
-                else {
-                    Raylib.DrawCircle(400, 150, 20, Raylib.RED);
-                }
-                Raylib.DrawText("CLICK anywhere on the screen with LEFT and RIGHT mouse", 100, 360, 30, Raylib.RED);
+
+                Raylib.DrawCircle(600, smallDotYCoor, 20, Raylib.RED);
+                // if (mouseWheelMove > 0) {
+                //     Raylib.DrawCircle(600, 100, 20, Raylib.RED);
+                // }
+                // else if (mouseWheelMove < 0) {
+                //     Raylib.DrawCircle(600, 200, 20, Raylib.RED);
+                // }
+                // else {
+                //     Raylib.DrawCircle(600, 150, 20, Raylib.RED);
+                // }
+                Raylib.DrawText("CLICK anywhere on the screen with LEFT, RIGHT, and MIDDLE mouses", 100, 360, 30, Raylib.RED);
                 Raylib.DrawText("The gray dots above will change color when the respective mouse is HELD.", 100, 400, 30, Raylib.RED);
                 Raylib.DrawText("Scroll to pull the small RED dot UP or DOWN", 100, 440, 30, Raylib.RED);
                 Raylib.DrawText("Watch the console for Pressed and Released detection", 100, 480, 30, Raylib.RED);
