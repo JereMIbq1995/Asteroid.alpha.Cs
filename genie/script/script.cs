@@ -1,6 +1,6 @@
 namespace genie.script
 {
-    class Script
+    public class Script
     {
         /*
             Private variables (Fields)

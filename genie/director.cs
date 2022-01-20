@@ -32,7 +32,7 @@ namespace genie {
     *         + All output actions
     *   ...every iteration of the loop
     **************************************************************/
-    class Director : script.Action.Callback {
+    public class Director : script.Action.Callback {
 
         private bool isDirecting;
         private Cast cast;

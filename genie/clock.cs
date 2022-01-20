@@ -1,5 +1,5 @@
 namespace genie {
-    class Clock {
+    public class Clock {
         private float TIME_STEP = 1/60;
         
         private float lag;

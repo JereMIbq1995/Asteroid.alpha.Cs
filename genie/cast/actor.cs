@@ -1,5 +1,5 @@
 namespace genie.cast {
-    class Actor {
+    public class Actor {
 
         // Private member variables (Fields)
         private string path;

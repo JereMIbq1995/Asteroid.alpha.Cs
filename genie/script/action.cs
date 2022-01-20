@@ -2,7 +2,7 @@
 using genie.cast;
 
 namespace genie.script {
-    abstract class Action {
+    public abstract class Action {
 
         public abstract class Callback {
             public abstract void OnNext(Cast cast, Script script);

@@ -1,5 +1,5 @@
 namespace genie.cast {
-    class Cast {
+    public class Cast {
         /*
             Private variables (Fields)
         */
