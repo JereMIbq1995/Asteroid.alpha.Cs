@@ -1,5 +1,3 @@
-using Raylib_CsLo;
-
 namespace genie.services {
     /*
         This class defines a few commonly used colors

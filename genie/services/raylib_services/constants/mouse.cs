@@ -1,4 +1,4 @@
-using Raylib_CsLo;
+using Raylib_cs;
 
 namespace genie.services.raylib
 {
@@ -6,7 +6,7 @@ namespace genie.services.raylib
     {
 
         // hold the mapping of genie mouse button to raylib mouse button
-        private Dictionary<int, int> mouseMap;
+        private Dictionary<int, MouseButton> mouseMap;
 
         /*
             Constructor:
@@ -14,24 +14,24 @@ namespace genie.services.raylib
         */
         public MouseMap()
         {
-            this.mouseMap = new Dictionary<int, int>();
+            this.mouseMap = new Dictionary<int, MouseButton>();
 
-            mouseMap.Add(Mouse.LEFT, (int) MouseButton.MOUSE_BUTTON_LEFT);
-            mouseMap.Add(Mouse.MIDDLE, (int) MouseButton.MOUSE_BUTTON_MIDDLE);
-            mouseMap.Add(Mouse.RIGHT, (int) MouseButton.MOUSE_BUTTON_RIGHT);
+            mouseMap.Add(Mouse.LEFT, MouseButton.MOUSE_LEFT_BUTTON);
+            mouseMap.Add(Mouse.MIDDLE, MouseButton.MOUSE_MIDDLE_BUTTON);
+            mouseMap.Add(Mouse.RIGHT, MouseButton.MOUSE_RIGHT_BUTTON);
 
-            mouseMap.Add(Mouse.EXTRA1, (int) MouseButton.MOUSE_BUTTON_EXTRA);
+            // mouseMap.Add(Mouse.EXTRA1, MouseButton.MOUSE_BUTTON_EXTRA);
 
-            mouseMap.Add(Mouse.SIDE, (int) MouseButton.MOUSE_BUTTON_SIDE);
-            mouseMap.Add(Mouse.FORWARD,(int) MouseButton.MOUSE_BUTTON_FORWARD);
-            mouseMap.Add(Mouse.BACK, (int) MouseButton.MOUSE_BUTTON_BACK);
+            // mouseMap.Add(Mouse.SIDE, MouseButton.MOUSE_BUTTON_SIDE);
+            // mouseMap.Add(Mouse.FORWARD,MouseButton.MOUSE_BUTTON_FORWARD);
+            // mouseMap.Add(Mouse.BACK, MouseButton.MOUSE_BUTTON_BACK);
         }
 
         /*
             Attempt to return the raylib version of the mouse button,
             given the genie version
         */
-        public int GetRaylibMouse(int genieMouseButton)
+        public MouseButton GetRaylibMouse(int genieMouseButton)
         {
             try
             {

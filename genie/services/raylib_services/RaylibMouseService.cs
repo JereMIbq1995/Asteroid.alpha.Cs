@@ -1,4 +1,4 @@
-using Raylib_CsLo;
+using Raylib_cs;
 using System.Numerics;
 
 namespace genie.services.raylib {
@@ -7,12 +7,14 @@ namespace genie.services.raylib {
 
         // Maps genie mouse buttons to Raylib mouse buttons
         MouseMap mouseMap;
+        Vector2 mousePosition;
 
         /*************************************************************************
         * Constructor
         **************************************************************************/
         public RaylibMouseService() {
             this.mouseMap = new MouseMap();
+            this.mousePosition = Raylib.GetMousePosition();
         }
 
         /*************************************************************************
@@ -54,8 +56,10 @@ namespace genie.services.raylib {
         * Check to see if the mouse has just moved from the last frame
         **************************************************************************/
         public bool HasMouseMoved() {
-            Vector2 mouseDelta = Raylib.GetMouseDelta();
-            return (mouseDelta.X > 0) || (mouseDelta.Y > 0);
+            Vector2 currentPosition = Raylib.GetMousePosition();
+            bool hasMoved = (currentPosition.X - this.mousePosition.X != 0) || (currentPosition.Y - this.mousePosition.Y != 0);
+            this.mousePosition = currentPosition;
+            return hasMoved;
         }
 
         /*************************************************************************
