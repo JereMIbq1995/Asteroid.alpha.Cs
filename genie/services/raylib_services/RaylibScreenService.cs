@@ -11,7 +11,9 @@ namespace genie.services.raylib {
 
         /***************************************************************
         * Constructor:
-        *   - Initialize winde
+        *   - Initialize window
+        *   - Set target FPS
+        *   - Initialize the circle sectors dictionary
         ****************************************************************/
         public RaylibScreenService((int, int) windowSize, string title = "Genie Game", int fps = 60) {
             // 
@@ -127,6 +129,5 @@ namespace genie.services.raylib {
         public bool IsQuit() {
             return Raylib.WindowShouldClose();
         }
-        
     }
 }
