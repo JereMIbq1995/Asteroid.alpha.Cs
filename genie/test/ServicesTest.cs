@@ -1,9 +1,9 @@
-using Raylib_CsLo;
+using Raylib_cs;
 using System.Numerics;
 
 namespace genie.services.raylib
 {
-    class ServicesTest {
+    public class ServicesTest {
         
         RaylibKeyboardService keyboardService;
         RaylibMouseService mouseService;
@@ -15,7 +15,7 @@ namespace genie.services.raylib
             // Nothing for now
             this.keyboardService = new RaylibKeyboardService();
             this.mouseService = new RaylibMouseService();
-            this.screenService = new RaylibScreenService();
+            this.screenService = new RaylibScreenService((1280, 720), "Services Test", 60);
         }
 
         /**********************************************************************
@@ -28,9 +28,6 @@ namespace genie.services.raylib
         * The third keys group tests the functions IsKeysDown() and IsKeysUp()
         ***********************************************************************/
         public void TestKeyboardService() {
-
-            Raylib.InitWindow(1280, 720, "Hello, Raylib-CsLo");
-            Raylib.SetTargetFPS(60);
 
             while (!screenService.IsQuit()) {
                 
@@ -79,19 +76,19 @@ namespace genie.services.raylib
                 // Comment this part out to see clearer result of previous tests
                 if (keyboardService.IsKeyDown(Keys.J))
                 {
-                    Console.WriteLine("J is pressed!");
+                    Console.WriteLine("J is down!");
                 }
                 if (keyboardService.IsKeyDown(Keys.L))
                 {
-                    Console.WriteLine("L is pressed!");
+                    Console.WriteLine("L is down!");
                 }
                 if (keyboardService.IsKeyDown(Keys.I))
                 {
-                    Console.WriteLine("I is pressed!");
+                    Console.WriteLine("I is down!");
                 }
                 if (keyboardService.IsKeyDown(Keys.K))
                 {
-                    Console.WriteLine("K is pressed!");
+                    Console.WriteLine("K is down!");
                 }
 
                 if (keyboardService.IsKeyUp(Keys.J) && keyboardService.IsKeyUp(Keys.L)
@@ -102,11 +99,11 @@ namespace genie.services.raylib
 
                 //All the drawing stuff...
                 Raylib.BeginDrawing();
-                Raylib.ClearBackground(Raylib.SKYBLUE);
+                Raylib.ClearBackground(Raylib_cs.Color.SKYBLUE);
                 Raylib.DrawFPS(10, 10);
-                Raylib.DrawText("Press UP, DOWN, LEFT, or RIGHT and watch the console!", 100, 360, 30, Raylib.RED);
-                Raylib.DrawText("Press W, S, A, or D and watch the console!", 100, 400, 30, Raylib.RED);
-                Raylib.DrawText("Press I, K, J, or L and watch the console!", 100, 440, 30, Raylib.RED);
+                Raylib.DrawText("Press UP, DOWN, LEFT, or RIGHT and watch the console!", 100, 360, 30, Raylib_cs.Color.RED);
+                Raylib.DrawText("Press W, S, A, or D and watch the console!", 100, 400, 30, Raylib_cs.Color.RED);
+                Raylib.DrawText("Press I, K, J, or L and watch the console!", 100, 440, 30, Raylib_cs.Color.RED);
                 Raylib.EndDrawing();
             }
             Raylib.CloseWindow();
@@ -119,9 +116,6 @@ namespace genie.services.raylib
         public void TestMouseService()
         {
             RaylibMouseService mouseService = new RaylibMouseService();
-
-            Raylib.InitWindow(1280, 720, "Hello, Raylib-CsLo");
-            Raylib.SetTargetFPS(60);
             int smallDotYCoor = 200;
 
             while (!screenService.IsQuit())
@@ -168,28 +162,29 @@ namespace genie.services.raylib
 
                 //All the drawing stuff...
                 Raylib.BeginDrawing();
-                Raylib.ClearBackground(Raylib.SKYBLUE);
+                
+                Raylib.ClearBackground(Raylib_cs.Color.SKYBLUE);
                 Raylib.DrawFPS(10, 10);
                 if (leftDown) {
-                    Raylib.DrawCircle(100, 100, 80, Raylib.RED);
+                    Raylib.DrawCircle(100, 100, 80, Raylib_cs.Color.RED);
                 }
                 if (leftUp) {
-                    Raylib.DrawCircle(100, 100, 80, Raylib.GRAY);
+                    Raylib.DrawCircle(100, 100, 80, Raylib_cs.Color.GRAY);
                 }
                 if (middleDown) {
-                    Raylib.DrawCircle(200, 100, 80, Raylib.BLUE);
+                    Raylib.DrawCircle(200, 100, 80, Raylib_cs.Color.BLUE);
                 }
                 if (middleUp) {
-                    Raylib.DrawCircle(200, 100, 80, Raylib.GRAY);
+                    Raylib.DrawCircle(200, 100, 80, Raylib_cs.Color.GRAY);
                 }
                 if (rightDown) {
-                    Raylib.DrawCircle(300, 100, 80, Raylib.RED);
+                    Raylib.DrawCircle(300, 100, 80, Raylib_cs.Color.RED);
                 }
                 if (rightUp) {
-                    Raylib.DrawCircle(300, 100, 80, Raylib.GRAY);
+                    Raylib.DrawCircle(300, 100, 80, Raylib_cs.Color.GRAY);
                 }
 
-                Raylib.DrawCircle(600, smallDotYCoor, 20, Raylib.RED);
+                Raylib.DrawCircle(600, smallDotYCoor, 20, Raylib_cs.Color.RED);
                 // if (mouseWheelMove > 0) {
                 //     Raylib.DrawCircle(600, 100, 20, Raylib.RED);
                 // }
@@ -199,11 +194,11 @@ namespace genie.services.raylib
                 // else {
                 //     Raylib.DrawCircle(600, 150, 20, Raylib.RED);
                 // }
-                Raylib.DrawText("CLICK anywhere on the screen with LEFT, RIGHT, and MIDDLE mouses", 100, 360, 30, Raylib.RED);
-                Raylib.DrawText("The gray dots above will change color when the respective mouse is HELD.", 100, 400, 30, Raylib.RED);
-                Raylib.DrawText("Scroll to pull the small RED dot UP or DOWN", 100, 440, 30, Raylib.RED);
-                Raylib.DrawText("Watch the console for Pressed and Released detection", 100, 480, 30, Raylib.RED);
-                Raylib.DrawText("Watch the console for mouse Movement detection", 100, 520, 30, Raylib.RED);
+                Raylib.DrawText("CLICK anywhere on the screen with LEFT, RIGHT, and MIDDLE mouses", 100, 360, 30, Raylib_cs.Color.RED);
+                Raylib.DrawText("The gray dots above will change color when the respective mouse is HELD.", 100, 400, 30, Raylib_cs.Color.RED);
+                Raylib.DrawText("Scroll to pull the small RED dot UP or DOWN", 100, 440, 30, Raylib_cs.Color.RED);
+                Raylib.DrawText("Watch the console for Pressed and Released detection", 100, 480, 30, Raylib_cs.Color.RED);
+                Raylib.DrawText("Watch the console for mouse Movement detection", 100, 520, 30, Raylib_cs.Color.RED);
                 Raylib.EndDrawing();
             }
             Raylib.CloseWindow();

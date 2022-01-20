@@ -1,7 +1,7 @@
 using genie.cast;
 
 namespace genie.test {
-    class CastScriptTest {
+    public class CastScriptTest {
         
         public void testCast() {
             Cast cast = new Cast();
