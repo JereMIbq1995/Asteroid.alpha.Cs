@@ -4,7 +4,7 @@ using genie.test;
 using genie.services;
 using genie.services.raylib;
 
-using Raylib_CsLo;
+using Raylib_cs;
 
 namespace asteroid
 {
@@ -20,7 +20,7 @@ namespace asteroid
             // castScriptTest.testScript();
             
             ServicesTest servicesTest = new ServicesTest();
-            servicesTest.TestMouseService();
+            servicesTest.TestKeyboardService();
 
             // Director director = new Director();
             // director.DirectScene();
