@@ -20,7 +20,7 @@ dotnet new console
 dotnet restore
 
 @REM Once the new project is created, add the Raylib_CsLo package
-dotnet add package Raylib-CsLo --version 4.0.0-rc.4.2
+dotnet add package Raylib-cs --version 3.7.0.1
 
 @REM If there's a cache file for Program.cs, copy the content to the Program.cs just created
 copy Program.cache Program.cs
