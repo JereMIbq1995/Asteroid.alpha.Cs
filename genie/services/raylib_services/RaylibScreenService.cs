@@ -89,11 +89,44 @@ namespace genie.services.raylib {
         }
 
         /***************************************************************
+        * BeginDrawing()
+        ****************************************************************/
+        public void BeginDrawing()
+        {
+            Raylib.BeginDrawing();
+        }
+
+        /***************************************************************
+        * BeginDrawing()
+        ****************************************************************/
+        public void FillScreen((int r, int g, int b, int a) color)
+        {
+            Raylib.ClearBackground(new Color(color.r, color.g, color.b, color.a));
+        }
+
+        /***************************************************************
+        * UpdateScreen()
+        ****************************************************************/
+        public void UpdateScreen()
+        {
+            Raylib.EndDrawing();
+        }
+
+        /***************************************************************
+        * CloseWindow()
+        ****************************************************************/
+        public void CloseWindow()
+        {
+            Raylib.CloseWindow();
+        }
+
+        /***************************************************************
         * Check to see if the X mark on the top right of the game window
         * is clicked
         ****************************************************************/
         public bool IsQuit() {
             return Raylib.WindowShouldClose();
         }
+        
     }
 }
