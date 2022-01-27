@@ -115,7 +115,6 @@ namespace genie.services.raylib
         ***********************************************************************/
         public void TestMouseService()
         {
-            RaylibMouseService mouseService = new RaylibMouseService();
             int smallDotYCoor = 200;
 
             while (!screenService.IsQuit())
@@ -202,6 +201,22 @@ namespace genie.services.raylib
                 Raylib.EndDrawing();
             }
             Raylib.CloseWindow();
+        }
+
+        /**********************************************************************
+        * This function test the detection of the mouse buttons:
+        * LEFT, RIGHT and Scrolling
+        ***********************************************************************/
+        public void TestScreenService() {
+            while (!screenService.IsQuit()) {
+                screenService.BeginDrawing();
+                screenService.FillScreen(Color.CYAN);
+                screenService.DrawText("Hello World non centered!", (640, 360), "", 30, Color.BLACK, true, false);
+                screenService.DrawText("Hello World centered!", (640, 500), "", 30, Color.BLACK, true, true);
+                screenService.DrawRectangle((640, 100), 50, 50, Color.RED, 5, (float) 0.5);
+                screenService.UpdateScreen();
+            }
+            screenService.CloseWindow();
         }
     }
 }

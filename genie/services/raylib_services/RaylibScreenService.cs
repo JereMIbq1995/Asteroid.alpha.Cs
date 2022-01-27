@@ -101,9 +101,9 @@ namespace genie.services.raylib {
         /***************************************************************
         * BeginDrawing()
         ****************************************************************/
-        public void FillScreen((int r, int g, int b, int a) color)
+        public void FillScreen(Color color)
         {
-            Raylib.ClearBackground(new Color(color.r, color.g, color.b, color.a));
+            Raylib.ClearBackground(new Raylib_cs.Color(color.r, color.g, color.b, color.a));
         }
 
         /***************************************************************
@@ -129,5 +129,73 @@ namespace genie.services.raylib {
         public bool IsQuit() {
             return Raylib.WindowShouldClose();
         }
+
+        /***************************************************************
+        * Draw Text: Draw the input text (string)
+        * Inputs:
+        *       - text: The text you want to draw
+        *       - font: The font you want to use (This does not work for now...)
+        *       - font_size: default is 24
+        *       - color: An RGB tuple. (0,0,0) is BLACK, and (255,255,255) is WHITE
+        *               You can also pass a 4 entries tuple. the 4th entry determines opacity
+        *       - position: A tuple in the form of (x, y)
+        *       - antialias: Boolean. Default is True (This does not work for now)
+        *       - position_center: A boolean that tells whether the position given should be
+        *                           the center of the text image or the top-left corner.
+        *               + True: treats the position as the center of the text image
+        *               + False: treats the position as the top-left corner of the text image
+        ****************************************************************/
+        public void DrawText(string text, (int x, int y) position, string font = "", 
+                            int fontSize = 24, Color? color = null,
+                            bool antialias = true, bool positionCenter = false) {
+            Raylib_cs.Color raylibColor = (color != null) ?
+                    new Raylib_cs.Color(color.r, color.g, color.b, color.a) : Raylib_cs.Color.BLACK;
+
+            if (positionCenter) {
+                Image textImage = Raylib.ImageText(text,fontSize, raylibColor);
+                Raylib.DrawText(text,
+                                (int)(position.x - textImage.width/2),
+                                (int)(position.y - textImage.height/2),
+                                fontSize,
+                                raylibColor);
+            }
+            else {
+                Raylib.DrawText(text,
+                                (int)(position.x),
+                                (int)(position.y),
+                                fontSize,
+                                raylibColor);
+            }
+        }
+
+        /***************************************************************
+        * Draw Rectangle: Draw a rectangle
+        * Inputs:
+        *       - center: An (x, y) tuple indicating the center of the rectangle
+        *       - width: the width of the rectangle
+        *       - height: the height of the rectangle
+        *       - color: An RGB tuple. (0,0,0) is BLACK, and (255,255,255) is WHITE
+        *               You can also pass a 4 entries tuple. the 4th entry determines opacity
+        *       - border_width: how many pixels you want the border to be
+        *       
+        *       - roundness: goes from 0 to 1:
+        *                   0 = completely squared
+        *                   1 = rounded like a circle
+        ****************************************************************/
+        public void DrawRectangle((int x, int y) center, float width, float height,
+                                    Color? color = null, int borderWidth = 0, float roundness = 0) {
+            float topleftX = center.x - width/2;
+            float topleftY = center.y - height/2;
+            Raylib_cs.Color raylibColor = (color != null) ?
+                    new Raylib_cs.Color(color.r, color.g, color.b, color.a) : Raylib_cs.Color.BLACK;
+
+            if (borderWidth <= 0) {
+                Raylib.DrawRectangleRounded(new Rectangle(topleftX, topleftY, width, height), roundness, 60, raylibColor);
+            }
+            else {
+                Raylib.DrawRectangleRoundedLines(new Rectangle(topleftX, topleftY, width, height), roundness, 60, borderWidth, raylibColor);
+            }
+        }
+
     }
 }
