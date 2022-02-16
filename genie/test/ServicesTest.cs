@@ -1,5 +1,6 @@
 using Raylib_cs;
 using System.Numerics;
+using genie.cast;
 
 namespace genie.services.raylib
 {
@@ -208,12 +209,35 @@ namespace genie.services.raylib
         * LEFT, RIGHT and Scrolling
         ***********************************************************************/
         public void TestScreenService() {
+            
+            Cast cast = new Cast();
+            Actor ship = new Actor("genie/test/testAssets/spaceship_red.png", 70, 50, 640, 360, 0, 0, 180);
+            cast.AddActor("ship", ship);
+
             while (!screenService.IsQuit()) {
                 screenService.BeginDrawing();
                 screenService.FillScreen(Color.CYAN);
-                screenService.DrawText("Hello World non centered!", (640, 360), "", 30, Color.BLACK, true, false);
-                screenService.DrawText("Hello World centered!", (640, 500), "", 30, Color.BLACK, true, true);
+
+                // Draw text
+                // screenService.DrawText("Hello World non centered!", (640, 360), "", 30, Color.BLACK, true, false);
+                // screenService.DrawText("Hello World centered!", (640, 500), "", 30, Color.BLACK, true, true);
+
+                // Draw Rectangle
                 screenService.DrawRectangle((640, 100), 50, 50, Color.RED, 5, (float) 0.5);
+
+                // Draw Circles (and their sectors)
+                screenService.DrawCircle((640, 360), 100, Color.GREEN, 0, true, false, true, false);
+                screenService.DrawCircle((440, 360), 100, Color.BLACK, 0, false, true, false, true);
+                screenService.DrawCircle((840, 360), 100, Color.GRAY, 0, false, false, true, true);
+                screenService.DrawCircle((1040, 360), 100, Color.YELLOW, 1, true, true, false, false);
+                screenService.DrawCircle((240, 360), 100, Color.MAGENTA, 1, true, false, false, true);
+                screenService.DrawCircle((640, 560), 100, Color.BLUE, 1, false, true, true, false);
+                screenService.DrawCircle((840, 560), 100, Color.WHITE, 5, true, true, true, true);
+                screenService.DrawCircle((440, 560), 100, Color.RED, 1, true, false, true, false);
+
+                // Drawing all actors in the cast
+                screenService.DrawActors(cast.GetAllActors());
+
                 screenService.UpdateScreen();
             }
             screenService.CloseWindow();
