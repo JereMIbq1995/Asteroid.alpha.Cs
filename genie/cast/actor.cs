@@ -105,6 +105,25 @@ namespace genie.cast {
             this.vy = vy;
         }
 
+        // Getters for top-left corner of the rectangle
+        public (float, float) GetTopLeft() {
+            return (this.x - this.width/2, this.y - this.height/2);
+        }
+        
+        public (float, float) GetTopRight()
+        {
+            return (this.x + this.width / 2, this.y - this.height / 2);
+        }
+
+        public (float, float) GetBottomLeft()
+        {
+            return (this.x - this.width / 2, this.y + this.height / 2);
+        }
+
+        public (float, float) GetBottomRight()
+        {
+            return (this.x + this.width / 2, this.y + this.height / 2);
+        }
 
         // Set/Get methods for rotation and rotation_vel
         public float GetRotation() {
@@ -130,6 +149,16 @@ namespace genie.cast {
 
         public void SetFlipped(bool flipped) {
             this.flipped = flipped;
+        }
+
+        // Move functions:
+        public void MoveWithVelocity() {
+            this.x += this.vx;
+            this.y += this.vy;
+        }
+
+        public void Rotate() {
+            this.rotation += this.rotationVel;
         }
     }
 }
