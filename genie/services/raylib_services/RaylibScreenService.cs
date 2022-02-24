@@ -145,7 +145,7 @@ namespace genie.services.raylib {
         *               + True: treats the position as the center of the text image
         *               + False: treats the position as the top-left corner of the text image
         ****************************************************************/
-        public void DrawText(string text, (int x, int y) position, string font = "", 
+        public void DrawText(string text, (float x, float y) position, string font = "", 
                             int fontSize = 24, Color? color = null,
                             bool antialias = true, bool positionCenter = false) {
             Raylib_cs.Color raylibColor = (color != null) ?
@@ -182,7 +182,7 @@ namespace genie.services.raylib {
         *                   0 = completely squared
         *                   1 = rounded like a circle
         ****************************************************************/
-        public void DrawRectangle((int x, int y) center, float width, float height,
+        public void DrawRectangle((float x, float y) center, float width, float height,
                                     Color? color = null, int borderWidth = 0, float roundness = 0) {
             float topleftX = center.x - width/2;
             float topleftY = center.y - height/2;
@@ -211,7 +211,7 @@ namespace genie.services.raylib {
         *       - draw_top_..., draw_bottom_...: Boolean. Use these parameters if want to draw
         *           only parts of the circle (top left, top right, bottom left, bottom right)
         ****************************************************************/
-        public void DrawCircle((int x, int y) center, float radius, Color? color = null, int width = 0,
+        public void DrawCircle((float x, float y) center, float radius, Color? color = null, int width = 0,
                                 bool drawTopRight = false, bool drawTopLeft = false,
                                 bool drawBottomLeft = false, bool drawBottomRight = false) {
             dynamic anglesData = this.circleSectorsDict[(drawTopRight, drawTopLeft, drawBottomLeft, drawBottomRight)];
