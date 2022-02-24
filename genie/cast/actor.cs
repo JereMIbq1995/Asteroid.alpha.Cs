@@ -70,6 +70,10 @@ namespace genie.cast {
             this.height = height;
         }
 
+        // Actor
+        public (float x, float y) GetPosition() {
+            return (this.x, this.y);
+        }
 
         // Set/Get methods for x and y
         public float GetX() {
