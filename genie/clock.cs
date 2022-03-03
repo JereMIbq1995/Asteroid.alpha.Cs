@@ -1,7 +1,6 @@
 namespace genie {
     public class Clock {
-        private float TIME_STEP = 1/60;
-        
+        private float TIME_STEP = (float) (1.0 / 60.0);
         private float lag;
         private DateTime previous;
         private float frames;
