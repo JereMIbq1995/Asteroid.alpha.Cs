@@ -27,8 +27,17 @@ namespace asteroid
 
         public static void Main(string[] args)
         {
+            (int, int) W_SIZE = (500, 700);
+            (int, int) START_POSITION = (500, 700);
+            int SHIP_WIDTH = 40;
+            int SHIP_LENGTH = 50;
+            string SCREEN_TITLE = "Asteroids";
+            int FPS = 120;
+            
             // Test();
-
+            RaylibKeyboardService keyboardService = new RaylibKeyboardService();
+            RaylibPhysicsService physicsService = new RaylibPhysicsService();
+            RaylibScreenService screenService = new RaylibScreenService(W_SIZE, SCREEN_TITLE, FPS);
             
         
         }
