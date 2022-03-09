@@ -75,7 +75,7 @@ namespace asteroid
             startGameActions["output"] = new List<genie.script.Action>();
 
             startGameActions["input"].Add(new HandleShipMovementAction(2, keyboardService));
-            // startGameActions["update"].Add(new SpawnAstroidAction(1, W_SIZE))
+            startGameActions["update"].Add(new SpawnAsteroidsAction(1, W_SIZE, (float)1.5));
 
             script.AddAction("input", new HandleStartGameAction(2, mouseService, physicsService, startGameActions));
 
