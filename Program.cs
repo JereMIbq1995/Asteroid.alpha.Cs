@@ -81,6 +81,7 @@ namespace asteroid
 
             // Add all update actions
             script.AddAction("update", new MoveActorsAction(1, physicsService));
+            script.AddAction("update", new HandleOffscreenAction(1, W_SIZE));
 
             // Add all output actions
             script.AddAction("output", new DrawActorsAction(1, screenService));
