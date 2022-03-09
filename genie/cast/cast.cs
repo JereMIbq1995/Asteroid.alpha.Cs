@@ -36,13 +36,13 @@ namespace genie.cast {
         * Input: the group name as a string
         * Return:
         *   - A copy of that group (so that user can't add to the original)
-        *   - NULL if the group doesn't exist
+        *   - Empty List of Actors if the group doesn't exist
         ************************************************************/
-        public List<Actor>? GetActors(string group) {
+        public List<Actor> GetActors(string group) {
             if (this.cast.ContainsKey(group)) {
                 return this.cast[group].ToList();
             }
-            return null;
+            return new List<Actor>();
         }
 
         /***********************************************************
