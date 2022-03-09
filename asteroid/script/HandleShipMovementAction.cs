@@ -31,7 +31,7 @@ namespace asteroid.script {
             // Only move if ship is not null
             if (this.ship != null) {
                 Dictionary<int, bool> keysState = keyboardService.GetKeysState(this.keysOfInterest);
-                Console.WriteLine(keysState[Keys.LEFT]);
+                // Console.WriteLine(keysState[Keys.LEFT]);
                 if (keysState[Keys.LEFT]) {
                     this.ship.SetVx(-this.shipMovementVel);
                 }
