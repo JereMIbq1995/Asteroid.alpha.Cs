@@ -7,14 +7,16 @@ using genie.services.raylib;
 namespace asteroid.script {
     class MoveActorsAction : genie.script.Action {
 
-        RaylibPhysicsService physicsService;
+        private RaylibPhysicsService physicsService;
 
         public MoveActorsAction(int priority, RaylibPhysicsService physicsService) : base(priority) {
             this.physicsService = physicsService;
         }
 
         public override void execute(Cast cast, Script script, Clock clock, Callback callback) {
-            this.physicsService.MoveActors(cast.GetAllActors());
+            List<Actor> allActors = cast.GetAllActors();
+            this.physicsService.MoveActors(allActors);
+            this.physicsService.RotateActors(allActors);
         }
     }
 }
