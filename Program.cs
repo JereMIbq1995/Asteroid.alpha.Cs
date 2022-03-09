@@ -8,6 +8,7 @@ using genie.services;
 using genie.services.raylib;
 
 using asteroid.script;
+using asteroid.cast;
 
 namespace asteroid
 {
@@ -30,6 +31,7 @@ namespace asteroid
 
         public static void Main(string[] args)
         {
+            // A few game constants
             (int, int) W_SIZE = (500, 700);
             (int, int) START_POSITION = (500, 700);
             int SHIP_WIDTH = 40;
@@ -72,9 +74,13 @@ namespace asteroid
             startGameActions["update"] = new List<genie.script.Action>();
             startGameActions["output"] = new List<genie.script.Action>();
 
-            // startGameActions["input"].Append(new HandleShipMovementAction(2, keyboardService));
-            // startGameActions["update"].Append(new SpawnAstroidAction(1, W_SIZE))
+            startGameActions["input"].Add(new HandleShipMovementAction(2, keyboardService));
+            // startGameActions["update"].Add(new SpawnAstroidAction(1, W_SIZE))
+
             script.AddAction("input", new HandleStartGameAction(2, mouseService, physicsService, startGameActions));
+
+            // Add all update actions
+            script.AddAction("update", new MoveActorsAction(1, physicsService));
 
             // Add all output actions
             script.AddAction("output", new DrawActorsAction(1, screenService));

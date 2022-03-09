@@ -31,7 +31,7 @@ class HandleStartGameAction : genie.script.Action {
                 
                 cast.RemoveActor("start_button", startGameButton);
                 script.RemoveAction("input", this);
-
+                
                 foreach (genie.script.Action action in this.actions["input"]) {
                     script.AddAction("input", action);
                 }

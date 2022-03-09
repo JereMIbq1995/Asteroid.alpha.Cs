@@ -4,6 +4,8 @@ using genie.script;
 using genie.services;
 using genie.services.raylib;
 
+using asteroid.cast;
+
 namespace asteroid.script {
     class DrawActorsAction : genie.script.Action {
         
