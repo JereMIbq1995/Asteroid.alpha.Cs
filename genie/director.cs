@@ -80,7 +80,7 @@ namespace genie {
         }
 
         private void DoInputs() {
-            Console.WriteLine("Doing inputs...");
+            // Console.WriteLine("Doing inputs...");
             this.clock.Tick();
             foreach (script.Action action in this.script.GetActions("input")) {
                 action.execute(this.cast, this.script, this.clock, this);
@@ -88,7 +88,7 @@ namespace genie {
         }
 
         private void DoUpdates() {
-            Console.WriteLine("Doing Updates...");
+            // Console.WriteLine("Doing Updates...");
             while (this.clock.IsLagging()) {
                 foreach (script.Action action in this.script.GetActions("update")) {
                     action.execute(this.cast, this.script, this.clock, this);
@@ -98,7 +98,7 @@ namespace genie {
         }
 
         private void DoOutputs() {
-            Console.WriteLine("Doing outputs...");
+            // Console.WriteLine("Doing outputs...");
             foreach (script.Action action in this.script.GetActions("output")) {
                 action.execute(this.cast, this.script, this.clock, this);
             }
