@@ -21,6 +21,7 @@ namespace asteroid.script {
                 Color actorColor = actor is Ship ? Color.BLUE : Color.BLACK;
                 this.screenService.DrawRectangle(actor.GetPosition(), actor.GetWidth(), actor.GetHeight(), actorColor, 5);
             }
+            // this.screenService.DrawActors(cast.GetAllActors());
         }
     }
 }
