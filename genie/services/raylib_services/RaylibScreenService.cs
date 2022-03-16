@@ -14,6 +14,13 @@ namespace genie.services.raylib {
         *   - Initialize window
         *   - Set target FPS
         *   - Initialize the circle sectors dictionary
+        *
+        * Input:
+        *   - windowSize: int 2-tuple, example: (600, 800)
+        *   - title: string, the name of the window of the game. Default value is "Genie Game"
+                    But you can change this to something else when you create the object
+                    (example: "Asteroid")
+        *   - fps: int, what frame rate do you want to use? Default is 60.
         ****************************************************************/
         public RaylibScreenService((int, int) windowSize, string title = "Genie Game", int fps = 60) {
             // 
@@ -260,7 +267,7 @@ namespace genie.services.raylib {
 
                 Raylib.DrawTexturePro(texture, new Rectangle(0,0,texture.width, texture.height),
                                     new Rectangle(center.x, center.y, frameWidth, frameHeight),
-                                    new System.Numerics.Vector2(frameWidth/2, frameWidth/2),
+                                    new System.Numerics.Vector2(frameWidth/2, frameHeight/2),
                                     actor.GetRotation(), new Raylib_cs.Color(255,255,255,255));
                 
                 if (actor is AnimatedActor) {
